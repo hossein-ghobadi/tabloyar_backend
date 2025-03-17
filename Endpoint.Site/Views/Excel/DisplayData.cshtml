@@ -1,0 +1,696 @@
+﻿@using Endpoint.Site.Models.ViewModels.ExcellViewModel;
+@model ExcelDataViewModel
+
+@{
+    ViewData["Title"] = "Data Display";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<!-- Buttons to Toggle Tables -->
+<div class="btn-group" role="group" aria-label="Table Toggles">
+    <button type="button" class="btn btn-primary" onclick="showTable('materialsTable')">Materials</button>
+    <button type="button" class="btn btn-primary" onclick="showTable('edgePropertiesTable')">Edge Properties</button>
+    <button type="button" class="btn btn-primary" onclick="showTable('crystalsTable')">Crystals</button>
+    <button type="button" class="btn btn-primary" onclick="showTable('colorCostsTable')">Color Costs</button>
+    <button type="button" class="btn btn-primary" onclick="showTable('edgePunchesTable')">Edge Punches</button>
+    <button type="button" class="btn btn-primary" onclick="showTable('gluesTable')">Glues</button>
+    <button type="button" class="btn btn-primary" onclick="showTable('powersTable')">Powers</button>
+    <button type="button" class="btn btn-primary" onclick="showTable('punchesTable')">Punches</button>
+    <button type="button" class="btn btn-primary" onclick="showTable('secondLayerMaterialsTable')">Second Layer Materials</button>
+    <button type="button" class="btn btn-primary" onclick="showTable('smdsTable')">Smds</button>
+    <button type="button" class="btn btn-primary" onclick="showTable('marginsTable')">Margins</button>
+    <button type="button" class="btn btn-primary" onclick="showTable('materialColorsTable')">Material Colors</button>
+    <button type="button" class="btn btn-primary" onclick="showTable('materialEdgeColorsTable')">Material Edge Colors</button>
+    <button type="button" class="btn btn-primary" onclick="showTable('materialEdgeSizesTable')">Material Edge Sizes</button>
+    <button type="button" class="btn btn-primary" onclick="showTable('qualityDegreesTable')">Quality Degrees</button>
+    <button type="button" class="btn btn-primary" onclick="showTable('titlesTable')">Titles</button>
+
+</div>
+
+<!-- Tables -->
+<div id="materialsTable" class="table-container shadow-lg p-3 mb-5 bg-white rounded" style="display: block;">
+    <h3 class="text-center text-primary">Materials</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped table-light">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Material Name</th>
+                    <th>Quality Factor</th>
+                    <th>Material Color</th>
+                    <th>Material Thickness</th>
+                    <th>Material Size X</th>
+                    <th>Material Size Y</th>
+                    <th>Material Fee</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var material in Model.Materials)
+                {
+                    <tr>
+                        <td>@material.Id</td>
+                        <td>@material.MaterialName</td>
+                        <td>@material.QualityFactor</td>
+                        <td>@material.MaterialColor</td>
+                        <td>@material.MaterialThickness</td>
+                        <td>@material.MaterialSizeX</td>
+                        <td>@material.MaterialSizeY</td>
+                        <td>@material.MaterialFee</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="edgePropertiesTable" class="table-container shadow-lg p-3 mb-5 bg-white rounded" style="display: none;">
+    <h3 class="text-center text-primary">Edge Properties</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped table-light">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Edge Title</th>
+                    <th>Edge Size</th>
+                    <th>Edge Color</th>
+                    <th>Edge Thickness</th>
+                    <th>Second Color</th>
+                    <th>Implementation Model</th>
+                    <th>Quality Factor</th>
+                    <th>Worker Fee</th>
+                    <th>Edge Fee</th>
+                    <th>Hardness Factor</th>
+                    <th>Is Default</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var edgeProperty in Model.EdgeProperties)
+                {
+                    <tr>
+                        <td>@edgeProperty.Id</td>
+                        <td>@edgeProperty.EdgeTitle</td>
+                        <td>@edgeProperty.EdgeSize</td>
+                        <td>@edgeProperty.EdgeColor</td>
+                        <td>@edgeProperty.EdgeThickness</td>
+                        <td>@edgeProperty.EdgeSecondColor</td>
+                        <td>@edgeProperty.ImplementationModel</td>
+                        <td>@edgeProperty.QualityFactor</td>
+                        <td>@edgeProperty.EdgeWorkerFee</td>
+                        <td>@edgeProperty.EdgeFee</td>
+                        <td>@edgeProperty.EdgeHardnessFactor</td>
+                        <td>
+                            @if (edgeProperty.IsDefault.HasValue && edgeProperty.IsDefault.Value)
+                            {
+                                <span class="badge badge-success">Yes</span>
+                            }
+                            else if (edgeProperty.IsDefault.HasValue && !edgeProperty.IsDefault.Value)
+                            {
+                                <span class="badge badge-secondary">No</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-warning">Unknown</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="crystalsTable" class="table-container shadow-lg p-3 mb-5 bg-white rounded" style="display: none;">
+    <h3 class="text-center text-primary">Crystals</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped table-light">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Crystal Model</th>
+                    <th>Crystal Color</th>
+                    <th>Crystal Fee</th>
+                    <th>Quality Factor</th>
+                    <th>Is Default</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var crystal in Model.Crystals)
+                {
+                    <tr>
+                        <td>@crystal.Id</td>
+                        <td>@crystal.CrystalModel</td>
+                        <td>@crystal.CrystalColor</td>
+                        <td>@crystal.CrystalFee</td>
+                        <td>@crystal.QualityFactor</td>
+                        <td>
+                            @if (crystal.IsDefault.HasValue && crystal.IsDefault.Value)
+                            {
+                                <span class="badge badge-success">Yes</span>
+                            }
+                            else if (crystal.IsDefault.HasValue && !crystal.IsDefault.Value)
+                            {
+                                <span class="badge badge-secondary">No</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-warning">Unknown</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="colorCostsTable" class="table-container shadow-lg p-3 mb-5 bg-white rounded" style="display: none;">
+    <h3 class="text-center text-primary">Color Costs</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped table-light">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Color Hardness</th>
+                    <th>Color Fee 1</th>
+                    <th>Color Fee 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var colorCost in Model.ColorCosts)
+                {
+                    <tr>
+                        <td>@colorCost.Id</td>
+                        <td>@colorCost.Title</td>
+                        <td>@colorCost.ColorHardness</td>
+                        <td>@colorCost.ColorFee1</td>
+                        <td>@colorCost.ColorFee2</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="edgePunchesTable" class="table-container shadow-lg p-3 mb-5 bg-white rounded" style="display: none;">
+    <h3 class="text-center text-primary">Edge Punches</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped table-light">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Edge Punch Title</th>
+                    <th>Edge Punch Model</th>
+                    <th>Edge Punch Fee</th>
+                    <th>Quality Factor</th>
+                    <th>Is Default</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var edgePunch in Model.EdgePunches)
+                {
+                    <tr>
+                        <td>@edgePunch.Id</td>
+                        <td>@edgePunch.EdgePunchTitle</td>
+                        <td>@edgePunch.EdgePunchModel</td>
+                        <td>@edgePunch.EdgePunchFee</td>
+                        <td>@edgePunch.QualityFactor</td>
+                        <td>
+                            @if (edgePunch.IsDefault.HasValue && edgePunch.IsDefault.Value)
+                            {
+                                <span class="badge badge-success">Yes</span>
+                            }
+                            else if (edgePunch.IsDefault.HasValue && !edgePunch.IsDefault.Value)
+                            {
+                                <span class="badge badge-secondary">No</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-warning">Unknown</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="gluesTable" class="table-container shadow-lg p-3 mb-5 bg-white rounded" style="display: none;">
+    <h3 class="text-center text-primary">Glues</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped table-light">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Glue Title</th>
+                    <th>Glue Fee</th>
+                    <th>Quality Factor</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var glue in Model.Glues)
+                {
+                    <tr>
+                        <td>@glue.Id</td>
+                        <td>@glue.GlueTitle</td>
+                        <td>@glue.GLueFee</td>
+                        <td>@glue.QualityFactor</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="powersTable" class="table-container shadow-lg p-3 mb-5 bg-white rounded" style="display: none;">
+    <h3 class="text-center text-primary">Powers</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped table-light">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Power Type</th>
+                    <th>Max Smd</th>
+                    <th>Power Fee</th>
+                    <th>Quality Factor</th>
+                    <th>Is Default</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var power in Model.Powers)
+                {
+                    <tr>
+                        <td>@power.Id</td>
+                        <td>@power.PowerType</td>
+                        <td>@power.MaxSmd</td>
+                        <td>@power.PowerFee</td>
+                        <td>@power.QualityFactor</td>
+                        <td>
+                            @if (power.IsDefault.HasValue && power.IsDefault.Value)
+                            {
+                                <span class="badge badge-success">Yes</span>
+                            }
+                            else if (power.IsDefault.HasValue && !power.IsDefault.Value)
+                            {
+                                <span class="badge badge-secondary">No</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-warning">Unknown</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="punchesTable" class="table-container shadow-lg p-3 mb-5 bg-white rounded" style="display: none;">
+    <h3 class="text-center text-primary">Punches</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped table-light">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Punch Title</th>
+                    <th>Punch Model</th>
+                    <th>Punch Fee</th>
+                    <th>Quality Factor</th>
+                    <th>Is Default</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var punch in Model.Punches)
+                {
+                    <tr>
+                        <td>@punch.Id</td>
+                        <td>@punch.PunchTitle</td>
+                        <td>@punch.PunchModel</td>
+                        <td>@punch.PunchFee</td>
+                        <td>@punch.QualityFactor</td>
+                        <td>
+                            @if (punch.IsDefault.HasValue && punch.IsDefault.Value)
+                            {
+                                <span class="badge badge-success">Yes</span>
+                            }
+                            else if (punch.IsDefault.HasValue && !punch.IsDefault.Value)
+                            {
+                                <span class="badge badge-secondary">No</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-warning">Unknown</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="secondLayerMaterialsTable" class="table-container shadow-lg p-3 mb-5 bg-white rounded" style="display: none;">
+    <h3 class="text-center text-primary">Second Layer Materials</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped table-light">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Material Name</th>
+                    <th>Is Default</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var secondLayerMaterial in Model.SecondLayerMaterials)
+                {
+                    <tr>
+                        <td>@secondLayerMaterial.Id</td>
+                        <td>@secondLayerMaterial.Title</td>
+                        <td>@secondLayerMaterial.MaterialName</td>
+                        <td>
+                            @if (secondLayerMaterial.IsDefault.HasValue && secondLayerMaterial.IsDefault.Value)
+                            {
+                                <span class="badge badge-success">Yes</span>
+                            }
+                            else if (secondLayerMaterial.IsDefault.HasValue && !secondLayerMaterial.IsDefault.Value)
+                            {
+                                <span class="badge badge-secondary">No</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-warning">Unknown</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="smdsTable" class="table-container shadow-lg p-3 mb-5 bg-white rounded" style="display: none;">
+    <h3 class="text-center text-primary">Smds</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped table-light">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Smd Title</th>
+                    <th>Smd Model</th>
+                    <th>Smd Color</th>
+                    <th>Smd Second Color</th>
+                    <th>Smd Fee</th>
+                    <th>Smd Worker Fee</th>
+                    <th>F Smd Gold Number</th>
+                    <th>B Smd Gold Number</th>
+                    <th>Quality Factor</th>
+                    <th>Is Default</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var smd in Model.Smds)
+                {
+                    <tr>
+                        <td>@smd.Id</td>
+                        <td>@smd.SmdTitle</td>
+                        <td>@smd.SmdModel</td>
+                        <td>@smd.SmdColor</td>
+                        <td>@smd.SmdSecondColor</td>
+                        <td>@smd.SmdFee</td>
+                        <td>@smd.SmdWorkerFee</td>
+                        <td>@smd.FSmdGoldNumber</td>
+                        <td>@smd.BSmdGoldNumber</td>
+                        <td>@smd.QualityFactor</td>
+                        <td>
+                            @if (smd.IsDefault.HasValue && smd.IsDefault.Value)
+                            {
+                                <span class="badge badge-success">Yes</span>
+                            }
+                            else if (smd.IsDefault.HasValue && !smd.IsDefault.Value)
+                            {
+                                <span class="badge badge-secondary">No</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-warning">Unknown</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="marginsTable" class="table-container shadow-lg p-3 mb-5 bg-white rounded" style="display: none;">
+    <h3 class="text-center text-primary">Margins</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped table-light">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Margin Title</th>
+                    <th>Margin Number</th>
+                    <th>Is Default</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var margin in Model.Margins)
+                {
+                    <tr>
+                        <td>@margin.Id</td>
+                        <td>@margin.MarginTitle</td>
+                        <td>@margin.MarginNumber</td>
+                        <td>
+                            @if (margin.IsDefault.HasValue && margin.IsDefault.Value)
+                            {
+                                <span class="badge badge-success">Yes</span>
+                            }
+                            else if (margin.IsDefault.HasValue && !margin.IsDefault.Value)
+                            {
+                                <span class="badge badge-secondary">No</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-warning">Unknown</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="materialColorsTable" class="table-container shadow-lg p-3 mb-5 bg-white rounded" style="display: none;">
+    <h3 class="text-center text-primary">Material Colors</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped table-light">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Material Name</th>
+                    <th>Color</th>
+                    <th>Is Default</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var materialColor in Model.MaterialColors)
+                {
+                    <tr>
+                        <td>@materialColor.Id</td>
+                        <td>@materialColor.Title</td>
+                        <td>@materialColor.MaterialName</td>
+                        <td>@materialColor.Color</td>
+                        <td>
+                            @if (materialColor.IsDefault.HasValue && materialColor.IsDefault.Value)
+                            {
+                                <span class="badge badge-success">Yes</span>
+                            }
+                            else if (materialColor.IsDefault.HasValue && !materialColor.IsDefault.Value)
+                            {
+                                <span class="badge badge-secondary">No</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-warning">Unknown</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="materialEdgeColorsTable" class="table-container shadow-lg p-3 mb-5 bg-white rounded" style="display: none;">
+    <h3 class="text-center text-primary">Material Edge Colors</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped table-light">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Edge Color</th>
+                    <th>Second Edge Color</th>
+                    <th>Is Default</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var materialEdgeColor in Model.MaterialEdgeColors)
+                {
+                    <tr>
+                        <td>@materialEdgeColor.Id</td>
+                        <td>@materialEdgeColor.Title</td>
+                        <td>@materialEdgeColor.EdgeColor</td>
+                        <td>@materialEdgeColor.SecondEdgeColor</td>
+                        <td>
+                            @if (materialEdgeColor.IsDefault.HasValue && materialEdgeColor.IsDefault.Value)
+                            {
+                                <span class="badge badge-success">Yes</span>
+                            }
+                            else if (materialEdgeColor.IsDefault.HasValue && !materialEdgeColor.IsDefault.Value)
+                            {
+                                <span class="badge badge-secondary">No</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-warning">Unknown</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div id="materialEdgeSizesTable" class="table-container shadow-lg p-3 mb-5 bg-white rounded" style="display: none;">
+    <h3 class="text-center text-primary">Material Edge Sizes</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped table-light">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Edge Size</th>
+                    <th>Is Default</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var materialEdgeSize in Model.MaterialEdgeSizes)
+                {
+                    <tr>
+                        <td>@materialEdgeSize.Id</td>
+                        <td>@materialEdgeSize.Title</td>
+                        <td>@materialEdgeSize.EdgeSize</td>
+                        <td>
+                            @if (materialEdgeSize.IsDefault.HasValue && materialEdgeSize.IsDefault.Value)
+                            {
+                                <span class="badge badge-success">Yes</span>
+                            }
+                            else if (materialEdgeSize.IsDefault.HasValue && !materialEdgeSize.IsDefault.Value)
+                            {
+                                <span class="badge badge-secondary">No</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-warning">Unknown</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div id="qualityDegreesTable" class="table-container shadow-lg p-3 mb-5 bg-white rounded" style="display: none;">
+    <h3 class="text-center text-primary">Quality Degrees</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped table-light">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Quality Factor</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var qualityDegree in Model.QualityDegrees)
+                {
+                    <tr>
+                        <td>@qualityDegree.Id</td>
+                        <td>@qualityDegree.QualityFactor</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div id="titlesTable" class="table-container shadow-lg p-3 mb-5 bg-white rounded" style="display: none;">
+    <h3 class="text-center text-primary">Titles</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped table-light">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Title Name</th>
+                    <th>Is Default</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var title in Model.Titles)
+                {
+                    <tr>
+                        <td>@title.Id</td>
+                        <td>@title.TitleName</td>
+                        <td>
+                            @if (title.IsDefault.HasValue && title.IsDefault.Value)
+                            {
+                                <span class="badge badge-success">Yes</span>
+                            }
+                            else if (title.IsDefault.HasValue && !title.IsDefault.Value)
+                            {
+                                <span class="badge badge-secondary">No</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-warning">Unknown</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<!-- Add more divs for other tables as needed -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    
+
+    function showTable(tableId) {
+        console.log("Button clicked for table:", tableId);
+
+        // Hide all tables
+        $('.table-container').hide();
+
+        // Show the selected table
+        $('#' + tableId).show();
+    }
+</script>
+

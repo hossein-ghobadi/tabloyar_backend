@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2>Enter Address for Geocoding</h2>
+
+<form method="post" action="/Home/Geocode">
+    <input type="text" name="address" required placeholder="Enter address here" style="width:300px;" />
+    <button type="submit">Get Coordinates</button>
+</form>
+
+@if (ViewBag.Latitude != null && ViewBag.Longitude != null)
+{
+    <h3>Latitude: @ViewBag.Latitude, Longitude: @ViewBag.Longitude</h3>
+}

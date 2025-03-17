@@ -1,0 +1,16 @@
+{
+  "port": 80,
+  "dotnet": {
+    "version": "6.0",
+    "timezone": "Asia/Tehran",
+    "dependencies": {
+      
+      "projects": [
+        {
+          "path": "Endpoint.Site/Endpoint.Site.csproj",
+          "name": "Endpoint.Site"
+        }
+      ]
+    }
+  }
+}

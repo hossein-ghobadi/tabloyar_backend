@@ -1,0 +1,29 @@
+﻿@* @model Endpoint.Site.Models.ViewModels.CheckDetails
+ *@
+@{
+    ViewBag.Title = "Check Payment Results";
+}
+
+<h2>Results</h2>
+
+<div>
+    <p><strong>Price:</strong> @ViewBag.Price</p>
+    <p><strong>Number of Checks:</strong> @ViewBag.NumChecks</p>
+    <p><strong>Max Months:</strong> @ViewBag.MaxMonths</p>
+    <p><strong>Golden Number:</strong> @ViewBag.GoldenNumber</p>
+    <p><strong>Purchase Date:</strong> @(ViewBag.PurchaseDate != null ? ((DateTime)ViewBag.PurchaseDate).ToString("yyyy-MM-dd") : "N/A")</p>
+</div>
+
+@if (ViewBag.DueDates != null && ViewBag.DueDates.Count > 0)
+{
+    <ul>
+        @foreach (var date in ViewBag.DueDates)
+        {
+            <li>@date</li>
+        }
+    </ul>
+}
+else
+{
+    <p>No valid due date configurations found.</p>
+}

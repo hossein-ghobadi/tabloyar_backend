@@ -1,0 +1,29 @@
+﻿@* @model Endpoint.Site.Models.ViewModels.CheckDetails
+ *@
+@{
+    ViewBag.Title = "Check Payment Calculator";
+}
+
+<h2>Check Payment Calculator</h2>
+
+@using (Html.BeginForm("CalculateDueDates", "Check", FormMethod.Post))
+
+{
+    <div>
+        <label>Price:</label>
+        @Html.TextBox("price", null, new { @type = "number", @step = "0.01" })
+    </div>
+    <div>
+        <label>Number of Checks:</label>
+        @Html.TextBox("numChecks", null, new { @type = "number", @min = "1" })
+    </div>
+    <div>
+        <label>Max Months:</label>
+        @Html.TextBox("maxMonths", null, new { @type = "number", @min = "1" })
+    </div>
+    <div>
+        <label>Purchase Date:</label>
+        @Html.TextBox("purchaseDate", null, new { @type = "date" })
+    </div>
+    <button type="submit">Calculate</button>
+}

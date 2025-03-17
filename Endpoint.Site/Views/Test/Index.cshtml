@@ -1,0 +1,144 @@
+﻿@model List<Endpoint.Site.Models.ViewModels.CharacterTypeCalculationModels.Question>
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ارزیابی DISC</title>
+    <style>
+        /* General Body Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f9fc;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            direction: rtl;
+            text-align: right;
+        }
+
+        /* Form Container */
+        form {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        /* Question Styling */
+        form .form-group {
+            margin-bottom: 30px; /* Increased spacing between questions */
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd; /* Adds a subtle separator between questions */
+        }
+
+        form .form-group:last-child {
+            border-bottom: none; /* Removes border for the last question */
+        }
+
+        form .form-group label {
+            font-size: 1.3em; /* Slightly larger font for questions */
+            font-weight: bold;
+            color: #444;
+            display: block;
+            margin-bottom: 15px; /* Space between question and answers */
+        }
+
+        /* Answer Options Styling */
+        form .form-group div {
+            display: flex;
+            flex-wrap: wrap; /* Ensures answers wrap to the next line if necessary */
+            gap: 15px; /* Increased spacing between answers */
+        }
+
+        form .form-group div label {
+            font-size: 1.1em; /* Slightly larger font for answers */
+            color: #555;
+        }
+
+        form .form-group div input[type="radio"] {
+            margin-left: 10px; /* Adjust spacing for RTL alignment */
+        }
+
+        /* Submit and Clear Buttons */
+        form .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px; /* Add spacing above the buttons */
+        }
+
+        form button {
+            background-color: #007bff;
+            color: white;
+            font-size: 1.1em;
+            font-weight: bold;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        form button:hover {
+            background-color: #0056b3;
+        }
+
+        form button.clear {
+            background-color: #dc3545;
+        }
+
+        form button.clear:hover {
+            background-color: #b02a37;
+        }
+    </style>
+    <script>
+        // JavaScript to clear the form
+        function clearForm() {
+            const form = document.querySelector('form');
+            const radioButtons = form.querySelectorAll('input[type="radio"]');
+            
+            // Uncheck all radio buttons
+            radioButtons.forEach(radio => {
+                radio.checked = false;
+            });
+        }
+    </script>
+</head>
+<body>
+
+    <form method="post">
+        <h2>ارزیابی DISC</h2>
+
+        @foreach (var question in Model)
+        {
+            <div class="form-group">
+                <!-- Display Question Text -->
+                <label>@question.Qtext</label>
+                <div>
+                    <!-- Display Answer Options -->
+                    @foreach (var answer in question.Answers)
+                    {
+                        <label>
+                            <input type="radio" name="answers[@question.Qid]" value="@answer.Aid" required />
+                            @answer.Atext
+                        </label>
+                    }
+                </div>
+            </div>
+        }
+
+        <div class="button-container">
+            <button type="submit">ارسال</button>
+            <button type="button" class="clear" onclick="clearForm()">پاک کردن فرم</button>
+        </div>
+    </form>
+
+</body>
+</html>
+
