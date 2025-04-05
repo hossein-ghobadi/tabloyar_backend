@@ -11,7 +11,6 @@ namespace Radin.Domain.Entities.Users
     {
         public string FullName { get; set; }
         public string? Gender { get; set; }
-        public string? Job { get; set; }
         public int? Country {  get; set; }
         public int? Province { get; set; }//Province
         public int? City { get; set; }
@@ -20,8 +19,9 @@ namespace Radin.Domain.Entities.Users
         public string? Address { get; set; }
         public bool IsRemove { get; set; }=false;
         public bool IsActive { get; set;}=true;
-        public long BranchCode {  get; set; }
         public double? Latitude { get; set; }
         public double? Longitude { get; set; }
+        public string? Documents { get; set; }
+        public DateTime InsertTime { get; set; }
     }
 }

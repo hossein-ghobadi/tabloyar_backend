@@ -489,84 +489,6 @@ namespace Endpoint.Site.Controllers
                 return BadRequest("تغییر گذرواژه با مشکل مواجه شد");
             }
         }
-        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
-
-        //[HttpPost]
-        //[Route("ForgetPassword")]
-        //public IActionResult ForgetPassword(ForgetPasswordViewModel model)
-        //{
-        //    var validationErrors = model.Validate();
-        //    if (validationErrors.Any())
-        //    {
-        //        return BadRequest(validationErrors);
-        //    }
-        //    var user = _userManager.FindByEmailAsync(model.email).Result;
-        //    if (user == null)
-        //    {
-        //        return NotFound("کاربری با این ایمیل آدرس یافت نشد!");
-        //    }
-
-        //    string token = _userManager.GeneratePasswordResetTokenAsync(user).Result;
-        //    Console.WriteLine($@"token={token}");
-        //    string CallbackUrl = Url.Action("ResetPassword", "Acount", 
-        //    new {UserId = user.Id,token = token},protocol: Request.Scheme);
-        //    string body = $"برای تغییر گذرواژه بر روی لینک زیر کلیک کنید <br/> <a href = {CallbackUrl}> link reset password </a>";
-
-        //   var result = _emailSendService.Execute(new RequestEmailSentDto
-        //    {
-        //        UserEmail = user.Email,
-        //        MsgBody = body,
-        //        Subject = "لینک تغییر گذرواژه به ایمیل شما ارسال شد"
-        //    });
-        //    return Ok(token);
-        //}
-
-        //[HttpPost]
-        //[Route("ResetPassword")]
-        //public IActionResult ResetPassword(ResetPasswordDto reset)
-        //{
-        //    var validationErrors = reset.Validate();
-        //    int id = validationErrors.Count();
-        //    var user = _userManager.FindByIdAsync(reset.UserId).Result;
-
-        //    if (user == null)
-        //    {
-        //        id = id + 1;
-        //        validationErrors.Add(new IdLabelDto
-        //        {
-        //            id = id,
-        //            label = "!کاربر یافت نشد"
-        //        });
-        //    }
-        //    if (user.EmailConfirmed == false)
-        //    {
-        //        id = id + 1;
-        //        validationErrors.Add(new IdLabelDto
-        //        {
-        //            id = id,
-        //            label = "!لطفا ابتدا ایمیل خود را تایید نمایید"
-        //        });
-        //    }
-
-        //    if (validationErrors.Any())
-        //    {
-        //        return BadRequest(validationErrors);
-        //    }
-            
-        //    //if (user == null || user.EmailConfirmed==false)
-        //    //{
-        //    //    return BadRequest();
-        //    //}
-        //    var Result = _userManager.ResetPasswordAsync(user, reset.Token, reset.Password).Result;
-        //    if (Result.Succeeded)
-        //    {
-        //        return Ok("گذرواژه با موفقیت تغییر یافت");
-        //    }
-        //    else
-        //    {
-        //        return BadRequest("تغییر گذرواژه با مشکل مواجه شد");
-        //    }
-        //}
 
 
         [HttpPost]
@@ -602,7 +524,6 @@ namespace Endpoint.Site.Controllers
                         phone = user.PhoneNumber,
                         phone2 = user.Phone,
                         gender = user.Gender,
-                        job = user.Job,
                         state = new IdLabelDto
                         {
                             id = user.Province ?? 0,
@@ -711,7 +632,6 @@ namespace Endpoint.Site.Controllers
                     user.PhoneNumber = mdl.phone;
                     user.Phone = mdl.phone2;
                     user.Gender = mdl.gender;
-                    user.Job = mdl.job;
                     user.Province = mdl.state;
                     user.City = mdl.city;
                     if(user.Age!=null) { user.Age = mdl.age; }

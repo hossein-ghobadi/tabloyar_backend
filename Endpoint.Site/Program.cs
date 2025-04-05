@@ -7,14 +7,9 @@ using Radin.Infrastructure.IdentityConfigs;
 
 using Radin.Application.Services;
 
-using Endpoint.Site.Models.NestingViewModel.ChannelliumViewModel;
-using Endpoint.Site.Models.NestingViewModel.ChannelliumViewModel.Mapping;
 using DotNetEnv;
 
-using Endpoint.Site.Models.ReportPdf;
 
-using Radin.Infrastructure.DependencyInjections;
-using Radin.Application.Services.CRM.Commands.CheckExpiration;
 
 Env.Load();
 var builder = WebApplication.CreateBuilder(args);
@@ -27,45 +22,45 @@ builder.Services.AddControllers();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IDataBaseContext, DataBaseContext>();
-builder.Services.AddScoped<IPriceFeeDataBaseContext, PriceFeeDataBaseContext>();
+//builder.Services.AddScoped<IPriceFeeDataBaseContext, PriceFeeDataBaseContext>();
 
 
 builder.Services.AddIdentityService(builder.Configuration);
 
 
 
-builder.Services.AddScoped<IPolicyRequirementsService, PolicyRequirementsService>();
+//builder.Services.AddScoped<IPolicyRequirementsService, PolicyRequirementsService>();
 
-builder.Services.AddAuthorization(options =>
-{
+//builder.Services.AddAuthorization(options =>
+//{
 
-    options.AddPolicy("DefaultPolicy", policy =>
-    {
-        policy.RequireAuthenticatedUser();
-    });
-    var serviceProvider = services.BuildServiceProvider();
-    var policyRequirementsService = serviceProvider.GetRequiredService<IPolicyRequirementsService>();
-    var policyRequirements = policyRequirementsService.GetPolicyRequirements();
+//    options.AddPolicy("DefaultPolicy", policy =>
+//    {
+//        policy.RequireAuthenticatedUser();
+//    });
+//    var serviceProvider = services.BuildServiceProvider();
+//    var policyRequirementsService = serviceProvider.GetRequiredService<IPolicyRequirementsService>();
+//    var policyRequirements = policyRequirementsService.GetPolicyRequirements();
 
-    foreach (var requirement in policyRequirements)
-    {
-        options.AddPolicy(requirement.PolicyName, policy =>
-        {
-            policy.RequireClaim(requirement.ClaimType, requirement.ClaimValue);
-        });
-    }
-});
+//    foreach (var requirement in policyRequirements)
+//    {
+//        options.AddPolicy(requirement.PolicyName, policy =>
+//        {
+//            policy.RequireClaim(requirement.ClaimType, requirement.ClaimValue);
+//        });
+//    }
+//});
 
 
 
 
 //----------------------------------------------------------------//
-builder.Services.AddInfrastructureServices(builder.Configuration);
-builder.Services.AddScoped<ChannelliumMapper, ChannelliumMapper>();
-builder.Services.AddScoped<SwediMapper, SwediMapper>();
-builder.Services.AddScoped<SwediMaxMapper, SwediMaxMapper>();
-builder.Services.AddScoped<PlasticMapper, PlasticMapper>();
-builder.Services.AddScoped<ReportPdfService, ReportPdfService>();
+//builder.Services.AddInfrastructureServices(builder.Configuration);
+//builder.Services.AddScoped<ChannelliumMapper, ChannelliumMapper>();
+//builder.Services.AddScoped<SwediMapper, SwediMapper>();
+//builder.Services.AddScoped<SwediMaxMapper, SwediMaxMapper>();
+//builder.Services.AddScoped<PlasticMapper, PlasticMapper>();
+//builder.Services.AddScoped<ReportPdfService, ReportPdfService>();
 
 
 var allowedOrigin1 = Environment.GetEnvironmentVariable("ALLOWED_ORIGIN1");
@@ -94,16 +89,16 @@ builder.Services.AddDbContext<DataBaseContext>(options =>
 {
     options.UseSqlServer(connection1);//, b => b.MigrationsAssembly("EndPoint.Site")
 });
-builder.Services.AddDbContext<PriceFeeDataBaseContext>(options =>
-{
-    options.UseSqlServer(connection2);//, b => b.MigrationsAssembly("EndPoint.Site")
-});
+//builder.Services.AddDbContext<PriceFeeDataBaseContext>(options =>
+//{
+//    options.UseSqlServer(connection2);//, b => b.MigrationsAssembly("EndPoint.Site")
+//});
 
 builder.WebHost.ConfigureKestrel(options =>
 {
     options.AllowSynchronousIO = true;
 });
-builder.Services.AddHostedService<CheckExpirationService>();
+//builder.Services.AddHostedService<CheckExpirationService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

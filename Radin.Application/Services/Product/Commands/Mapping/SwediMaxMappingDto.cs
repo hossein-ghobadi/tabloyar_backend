@@ -1,142 +1,142 @@
-﻿using Newtonsoft.Json.Linq;
-using Radin.Application.Services.Product.Commands.PlasticPrice;
-using Radin.Application.Services.Product.Commands.SwediMaxPrice;
-using Radin.Application.Services.Product.Commands.SwediPrice;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿//using Newtonsoft.Json.Linq;
+//using Radin.Application.Services.Product.Commands.PlasticPrice;
+//using Radin.Application.Services.Product.Commands.SwediMaxPrice;
+//using Radin.Application.Services.Product.Commands.SwediPrice;
+//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Text;
+//using System.Threading.Tasks;
 
-namespace Radin.Application.Services.Product.Commands.Mapping
-{
-    public class SwediMaxMappingDto
-    {
-        public SwediMaxRequest MapJsonToRequestChallCostDto(JObject jsonData, JObject data)
-        {
+//namespace Radin.Application.Services.Product.Commands.Mapping
+//{
+//    public class SwediMaxMappingDto
+//    {
+//        public SwediMaxRequest MapJsonToRequestChallCostDto(JObject jsonData, JObject data)
+//        {
 
-            int Checkpoint = 1;
-            var punchCheckpoint = false;
-            try
-            {
-                var punch = "";
-                Checkpoint = jsonData["data"]?["modelLayerLetters"]?["value"]?["id"]?.Value<int>() ?? default(int);
-                if (Checkpoint == 1)
-                {
-                    punch = jsonData["data"]?["modelLayerLetters"]?["one"]?["needPunchPelekcy"]?["nature"]?["label"]?.Value<string>();
-                    punchCheckpoint = jsonData["data"]?["modelLayerLetters"]?["one"]?["needPunchPelekcy"]?["value"]?.Value<bool>() ?? default(bool);
-                }
-                else if (Checkpoint == 2)
-                {
-                    punch = jsonData["data"]?["modelLayerLetters"]?["two"]?["needPunch"]?["nature"]?["label"]?.Value<string>();
-                    punchCheckpoint = jsonData["data"]?["modelLayerLetters"]?["two"]?["needPunch"]?["value"]?.Value<bool>() ?? default(bool);
+//            int Checkpoint = 1;
+//            var punchCheckpoint = false;
+//            try
+//            {
+//                var punch = "";
+//                Checkpoint = jsonData["data"]?["modelLayerLetters"]?["value"]?["id"]?.Value<int>() ?? default(int);
+//                if (Checkpoint == 1)
+//                {
+//                    punch = jsonData["data"]?["modelLayerLetters"]?["one"]?["needPunchPelekcy"]?["nature"]?["label"]?.Value<string>();
+//                    punchCheckpoint = jsonData["data"]?["modelLayerLetters"]?["one"]?["needPunchPelekcy"]?["value"]?.Value<bool>() ?? default(bool);
+//                }
+//                else if (Checkpoint == 2)
+//                {
+//                    punch = jsonData["data"]?["modelLayerLetters"]?["two"]?["needPunch"]?["nature"]?["label"]?.Value<string>();
+//                    punchCheckpoint = jsonData["data"]?["modelLayerLetters"]?["two"]?["needPunch"]?["value"]?.Value<bool>() ?? default(bool);
 
-                }
-                else
-                {
+//                }
+//                else
+//                {
 
-                }
-                var request1 = new RequestSwediMaxPriceDto
-                {
+//                }
+//                var request1 = new RequestSwediMaxPriceDto
+//                {
 
-                    Title = jsonData["boardType"]?["label"]?.Value<string>(),
-                    EdgeSize = jsonData["data"]?["edgesSize"]?["label"]?.Value<float>() ?? default(float),
-                    EdgeColor = jsonData["data"]?["edgeColor"]?["label"]?.Value<string>(),
-                    EdgeSecondColor = jsonData["data"]?["secondEdgedgeColor"]?["label"]?.Value<string>(),
-                    PvcCheckPoint = jsonData["data"]?["needPVC"]?["value"]?.Value<bool>() ?? default(bool),
-                    FirstLayerColor = jsonData["data"]?["modelLayerLetters"]?["one"]?["colorPelekcy"]?["label"]?.Value<string>(),
-                    PlexiPunchModel = jsonData["data"]?["modelLayerLetters"]?["one"]?["needPunchPelekcy"]?["nature"]?["label"]?.Value<string>(),
-                    CrystalModel = jsonData["data"]?["needCrystal"]?["color"]?["label"]?.Value<string>(),
-                    BSmdModel = jsonData["data"]?["needPVC"]?["backLight"]?["nature"]?["label"]?.Value<string>(),
-                    FSmdModel = jsonData["data"]?["needPVC"]?["frontLight"]?["nature"]?["label"]?.Value<string>(),
-                    PvcBackLightMargin = jsonData["data"]?["PVCHasBackLight"]?["margin"]?["label"]?.Value<float>() ?? default(float),
-                    PunchModel = jsonData["data"]?["modelLayerLetters"]?["one"]?["needPunchPelekcy"]?["nature"]?["label"]?.Value<string>(),
-                    PowerCheckpoint = jsonData["data"]?["power"]?["value"]?.Value<bool>() ?? default(bool),
-                    powerdata = jsonData["data"]?["power"]?["data"]?.ToObject<Dictionary<int, int>>(),
-                    PowerCalculationType = jsonData["data"]?["power"]?["count"]?["label"]?.Value<string>(),
+//                    Title = jsonData["boardType"]?["label"]?.Value<string>(),
+//                    EdgeSize = jsonData["data"]?["edgesSize"]?["label"]?.Value<float>() ?? default(float),
+//                    EdgeColor = jsonData["data"]?["edgeColor"]?["label"]?.Value<string>(),
+//                    EdgeSecondColor = jsonData["data"]?["secondEdgedgeColor"]?["label"]?.Value<string>(),
+//                    PvcCheckPoint = jsonData["data"]?["needPVC"]?["value"]?.Value<bool>() ?? default(bool),
+//                    FirstLayerColor = jsonData["data"]?["modelLayerLetters"]?["one"]?["colorPelekcy"]?["label"]?.Value<string>(),
+//                    PlexiPunchModel = jsonData["data"]?["modelLayerLetters"]?["one"]?["needPunchPelekcy"]?["nature"]?["label"]?.Value<string>(),
+//                    CrystalModel = jsonData["data"]?["needCrystal"]?["color"]?["label"]?.Value<string>(),
+//                    BSmdModel = jsonData["data"]?["needPVC"]?["backLight"]?["nature"]?["label"]?.Value<string>(),
+//                    FSmdModel = jsonData["data"]?["needPVC"]?["frontLight"]?["nature"]?["label"]?.Value<string>(),
+//                    PvcBackLightMargin = jsonData["data"]?["PVCHasBackLight"]?["margin"]?["label"]?.Value<float>() ?? default(float),
+//                    PunchModel = jsonData["data"]?["modelLayerLetters"]?["one"]?["needPunchPelekcy"]?["nature"]?["label"]?.Value<string>(),
+//                    PowerCheckpoint = jsonData["data"]?["power"]?["value"]?.Value<bool>() ?? default(bool),
+//                    powerdata = jsonData["data"]?["power"]?["data"]?.ToObject<Dictionary<int, int>>(),
+//                    PowerCalculationType = jsonData["data"]?["power"]?["count"]?["label"]?.Value<string>(),
 
-                    //EdgePunchModel = jsonData["data"]?["isPunch"]?["nature"]?["label"]?.Value<string>(),
-                    //CrystalCondition= jsonData["data"]?["needCrystal"]?["color"]?.Value<bool>() ?? default(bool)
-                    SecondLayerColor = jsonData["data"]?["modelLayerLetters"]?["two"]?["externalColorPelekcy"]?["label"]?.Value<string>(),
-                    SecondLayerModel = jsonData["data"]?["modelLayerLetters"]?["two"]?["layerMaterial"]?["value"]?["label"]?.Value<string>(),
-                    EdgePunchModel = jsonData["data"]?["isPunch"]?["nature"]?["label"]?.Value<string>(),
-                    LayerCondition = Checkpoint,
-
-
-
-                    LayerPunchCheckpoint = punchCheckpoint,
-                    EdgePunchCheckpoint = jsonData["data"]?["isPunch"]?["value"]?.Value<bool>() ?? default(bool),
-                    FSmdCheckpoint = jsonData["data"]?["needPVC"]?["frontLight"]?["value"]?.Value<bool>() ?? default(bool),
-                    BSmdCheckpoint = jsonData["data"]?["needPVC"]?["backLight"]?["value"]?.Value<bool>() ?? default(bool),
-                    CrystalCheckpoint = jsonData["data"]?["needCrystal"]?["value"]?.Value<bool>() ?? default(bool),
-                    PvcBackLightCheckPoint = jsonData["data"]?["PVCHasBackLight"]?["value"]?.Value<bool>() ?? default(bool),
-
-                };
-                //----------------------------------------------------------------------------------
-
-
-                var request2 = new RequestSwediMaxNfpInfoDto
-                {
-
-                    AConsumptionM1 = data["plexiNestingArea"].ToObject<float>(),
-                    AConsumptionM2 = data["secondLayerNestingArea"].ToObject<float>(),
-
-                    AConsumptionPvc = data["pvcNestingArea"].ToObject<float>(),
-                    ARealPvc = data["pvcRealArea"].ToObject<float>(),
-                    LRealPvc = data["pvcPerimeter"].ToObject<float>()
-                };
-                //----------------------------------------------------------------------------------
+//                    //EdgePunchModel = jsonData["data"]?["isPunch"]?["nature"]?["label"]?.Value<string>(),
+//                    //CrystalCondition= jsonData["data"]?["needCrystal"]?["color"]?.Value<bool>() ?? default(bool)
+//                    SecondLayerColor = jsonData["data"]?["modelLayerLetters"]?["two"]?["externalColorPelekcy"]?["label"]?.Value<string>(),
+//                    SecondLayerModel = jsonData["data"]?["modelLayerLetters"]?["two"]?["layerMaterial"]?["value"]?["label"]?.Value<string>(),
+//                    EdgePunchModel = jsonData["data"]?["isPunch"]?["nature"]?["label"]?.Value<string>(),
+//                    LayerCondition = Checkpoint,
 
 
 
+//                    LayerPunchCheckpoint = punchCheckpoint,
+//                    EdgePunchCheckpoint = jsonData["data"]?["isPunch"]?["value"]?.Value<bool>() ?? default(bool),
+//                    FSmdCheckpoint = jsonData["data"]?["needPVC"]?["frontLight"]?["value"]?.Value<bool>() ?? default(bool),
+//                    BSmdCheckpoint = jsonData["data"]?["needPVC"]?["backLight"]?["value"]?.Value<bool>() ?? default(bool),
+//                    CrystalCheckpoint = jsonData["data"]?["needCrystal"]?["value"]?.Value<bool>() ?? default(bool),
+//                    PvcBackLightCheckPoint = jsonData["data"]?["PVCHasBackLight"]?["value"]?.Value<bool>() ?? default(bool),
+
+//                };
+//                //----------------------------------------------------------------------------------
 
 
-                string choosedQualityFactor = "";// Default value
-                try
-                {
-                    var possibleLabel = jsonData["data"]?["power"]?["qualityDegree"]?["label"];
-                    if (possibleLabel != null)
-                    {
-                        choosedQualityFactor = possibleLabel.Value<string>();
-                    }
-                }
-                catch (Exception)
-                {
-                    // Log exception or handle it according to your application's needs
-                    // choosedQualityFactor retains its default value
-                }
-                //----------------------------------------------------------------------------------
+//                var request2 = new RequestSwediMaxNfpInfoDto
+//                {
+
+//                    AConsumptionM1 = data["plexiNestingArea"].ToObject<float>(),
+//                    AConsumptionM2 = data["secondLayerNestingArea"].ToObject<float>(),
+
+//                    AConsumptionPvc = data["pvcNestingArea"].ToObject<float>(),
+//                    ARealPvc = data["pvcRealArea"].ToObject<float>(),
+//                    LRealPvc = data["pvcPerimeter"].ToObject<float>()
+//                };
+//                //----------------------------------------------------------------------------------
 
 
 
-                return new SwediMaxRequest
-                {
-                    Request1 = request1,
-                    Request2 = request2,
-                    ChoosedQualityFactor = choosedQualityFactor
 
-                };
-            }
-            catch
-            {
-                return new SwediMaxRequest
-                {
-                    Message = " داده های اولیه محاسبه قیمت به درستی دریافت نشد",
-                    Request1 = new RequestSwediMaxPriceDto(),
-                    Request2 = new RequestSwediMaxNfpInfoDto(),
-                    ChoosedQualityFactor = ""
 
-                };
-            }
-        }
-    }
-        public class SwediMaxRequest
-        {
-            public string Message { get; set; }
-            public RequestSwediMaxPriceDto Request1 { get; set; }
-            public RequestSwediMaxNfpInfoDto Request2 { get; set; }
-            public string ChoosedQualityFactor { get; set; }
-        }
+//                string choosedQualityFactor = "";// Default value
+//                try
+//                {
+//                    var possibleLabel = jsonData["data"]?["power"]?["qualityDegree"]?["label"];
+//                    if (possibleLabel != null)
+//                    {
+//                        choosedQualityFactor = possibleLabel.Value<string>();
+//                    }
+//                }
+//                catch (Exception)
+//                {
+//                    // Log exception or handle it according to your application's needs
+//                    // choosedQualityFactor retains its default value
+//                }
+//                //----------------------------------------------------------------------------------
+
+
+
+//                return new SwediMaxRequest
+//                {
+//                    Request1 = request1,
+//                    Request2 = request2,
+//                    ChoosedQualityFactor = choosedQualityFactor
+
+//                };
+//            }
+//            catch
+//            {
+//                return new SwediMaxRequest
+//                {
+//                    Message = " داده های اولیه محاسبه قیمت به درستی دریافت نشد",
+//                    Request1 = new RequestSwediMaxPriceDto(),
+//                    Request2 = new RequestSwediMaxNfpInfoDto(),
+//                    ChoosedQualityFactor = ""
+
+//                };
+//            }
+//        }
+//    }
+//        public class SwediMaxRequest
+//        {
+//            public string Message { get; set; }
+//            public RequestSwediMaxPriceDto Request1 { get; set; }
+//            public RequestSwediMaxNfpInfoDto Request2 { get; set; }
+//            public string ChoosedQualityFactor { get; set; }
+//        }
 
     
-}
+//}
