@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\CRM\Queries\" />
     <Folder Include="Services\Factors\Commands\Accessory\AccessoryRemove\" />
     <Folder Include="Services\Factors\Commands\Accessory\AccessoryEdit\" />
     <Folder Include="Services\Product\Queries\" />

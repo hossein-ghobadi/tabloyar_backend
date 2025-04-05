@@ -23,6 +23,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Views\Check\Index.cshtml" />
+    <None Include="Views\Check\Result.cshtml" />
+    <None Include="Views\Excel\Address.cshtml" />
+    <None Include="Views\Excel\DisplayData.cshtml" />
+    <None Include="Views\Excel\Map.cshtml" />
+    <None Include="Views\Excel\Upload.cshtml" />
+    <None Include="Views\Excel\UploadCustomerFactor.cshtml" />
+    <None Include="Views\Excel\UploadState.cshtml" />
+    <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <None Include="Views\Test\Index.cshtml" />
+    <None Include="Views\Test\Result.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="DotNetEnv" Version="3.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="6.0.0" />
